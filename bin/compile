@@ -102,6 +102,11 @@ cp $VENDORED_GRAPHICSMAGICK/bin/* "$BUILD_DIR/bin/"
 
 cp -R $VENDORED_GRAPHICSMAGICK/* $gm_lib_path
 
+if [ -d "$BUILD_DIR/vendor/graphicsmagick/share" ]; then
+    echo "Removing documentation folder: $BUILD_DIR/vendor/graphicsmagick/share" | arrow
+    rm -rf "$BUILD_DIR/vendor/graphicsmagick/share/doc/"
+fi
+
 echo "Building runtime environment for graphicsmagick" | arrow
 mkdir -p $BUILD_DIR/.profile.d
 echo "export PATH=\"\$HOME/bin:\$PATH\"" > $BUILD_DIR/.profile.d/graphicsmagick.sh
